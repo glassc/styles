@@ -1,0 +1,98 @@
+name: Create Release with CSS Files
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install clean-css-cli
+        run: npm install -g clean-css-cli
+
+      - name: Minify CSS
+        run: cleancss styles.css -o styles.min.css
+
+      - name: Get next version
+        id: version
+        run: |
+          # Get the latest tag, or start with v1.0.0 if no tags exist
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $LATEST_TAG"
+          
+          # Extract version numbers
+          if [[ $LATEST_TAG =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            MAJOR=${BASH_REMATCH[1]}
+            MINOR=${BASH_REMATCH[2]}
+            PATCH=${BASH_REMATCH[3]}
+          else
+            MAJOR=1
+            MINOR=0
+            PATCH=0
+          fi
+          
+          # Increment patch version
+          PATCH=$((PATCH + 1))
+          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          
+          echo "Next version: $NEW_VERSION"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
+          body: |
+            ## CSS Style Release ${{ steps.version.outputs.version }}
+            
+            This release contains the latest version of the personal style guide CSS files.
+            
+            ### Files included:
+            - `styles.css` - Original CSS file with full formatting and comments
+            - `styles.min.css` - Minified version for production use
+            
+            ### Changes:
+            - Updated styles and components
+            - Generated from commit ${{ github.sha }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Original CSS
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./styles.css
+          asset_name: styles.css
+          asset_content_type: text/css
+
+      - name: Upload Minified CSS
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./styles.min.css
+          asset_name: styles.min.css
+          asset_content_type: text/css
