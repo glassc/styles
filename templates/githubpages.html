@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Site Title</title>
+    <link rel="stylesheet" href="css/styles.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="flex justify-between items-center mt-xl mb-xl">
+            <div class="text-center flex-1">
+                <h1>Welcome to Your Site</h1>
+                <p class="text-lg text-secondary">Built with Nord Theme</p>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.75 12.79A9 9 0 1111.21 2.25 7 7 0 0021.75 12.79z"/>
+                </svg>
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+            </button>
+        </header>
+
+        <main>
+            <section class="mb-xl">
+                <h2 class="text-2xl font-bold mb-md">Getting Started</h2>
+                <p class="mb-md">This site uses the Nord color palette with automatic light/dark theme switching. Customize this template with your own content.</p>
+                
+                <div class="grid grid-cols-2 gap-md">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Example Card</div>
+                            <div class="card-meta">Sample content</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Replace this with your own content. The theme automatically adapts to light and dark modes.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Theme Toggle</div>
+                            <div class="card-meta">Interactive</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Click the theme toggle button in the header to switch between light and dark modes.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-xl">
+                <h2 class="text-2xl font-bold mb-md">Available Components</h2>
+                <p class="mb-md">This theme includes buttons, cards, navigation, grid system, and typography utilities.</p>
+                
+                <div class="mb-md">
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-secondary">Secondary Button</button>
+                    <button class="btn btn-ghost">Ghost Button</button>
+                </div>
+                
+                <nav class="nav border rounded p-md">
+                    <a href="#" class="nav-brand">Your Brand</a>
+                    <ul class="nav-links">
+                        <li><a href="#" class="nav-link active">Home</a></li>
+                        <li><a href="#" class="nav-link">About</a></li>
+                        <li><a href="#" class="nav-link">Projects</a></li>
+                        <li><a href="#" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </main>
+
+        <footer class="text-center mt-2xl mb-xl border-t pt-xl">
+            <p class="text-secondary">Built with <a href="https://styles.chrisglass.dev" target="_blank">Nord Theme</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Get saved theme from localStorage or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Set initial theme
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        } else if (systemPrefersDark) {
+            html.setAttribute('data-theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+        }
+        
+        // Toggle theme function
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        // Add click event listener
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Only auto-switch if user hasn't manually set a preference
+            if (!localStorage.getItem('theme')) {
+                html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+</body>
+</html>

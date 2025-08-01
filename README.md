@@ -15,10 +15,28 @@ This style guide creates visual harmony through consistent color relationships:
 ## 📁 Files
 
 - **`styles.css`** - Complete CSS framework with design tokens and components
-- **`index.html`** - Interactive style guide showcasing all components
+- **`docs/index.html`** - Interactive style guide showcasing all components
+- **`templates/githubpages.html`** - Clean template for GitHub Pages
+- **`docs/install.sh`** - Installer script for easy setup
 - **`README.md`** - Documentation and usage instructions
 
 ## 🚀 Quick Start
+
+### One-Command Installation
+
+The easiest way to add the Nord theme to any project:
+
+```bash
+curl -fsSL https://styles.chrisglass.dev/install.sh | sh
+```
+
+This will:
+- Download the latest CSS file
+- Optionally create a ready-to-use `index.html` with theme toggle
+- Automatically detect your project structure and suggest the best directory
+- Update file paths to match your setup
+
+### Manual Installation
 
 ### For Astro Projects
 
@@ -334,13 +352,36 @@ This style guide combines elements from two excellent design systems:
 
 Both design systems have been harmoniously combined and reimplemented for use with Astro and GitHub Pages.
 
+## 🚀 Distribution
+
+This theme is distributed through GitHub Releases and can be installed with a single command:
+
+```bash
+curl -fsSL https://styles.chrisglass.dev/install.sh | sh
+```
+
+### What Gets Installed
+
+- **styles.min.css** - Minified CSS framework (from latest GitHub release)
+- **index.html** - Clean template with theme toggle (optional)
+- **Automatic path detection** - Script detects your project type and suggests appropriate directories
+
+### Supported Project Types
+
+The installer automatically detects and suggests directories for:
+- **GitHub Pages** → `assets/css/` or `css/`
+- **Jekyll** → `_sass/` or `assets/css/`
+- **Astro** → `public/`
+- **Static sites** → `css/` or `static/css/`
+
 ## 📄 License
 
 This style guide is provided as-is for personal and educational use. Please respect Ghost's original theme license when using these adapted styles.
 
 ## 🔗 Links
 
-- [View Style Guide](index.html) - Interactive component showcase with theme toggle
+- [View Style Guide](https://styles.chrisglass.dev) - Interactive component showcase with theme toggle
+- [One-Command Install](https://styles.chrisglass.dev/install.sh) - Curl installer script
 - [Nord Color Palette](https://www.nordtheme.com/) - Unified color system
 - [Ghost Journal Theme](https://ghost.org/themes/journal/) - Design pattern inspiration
 - [Astro Documentation](https://docs.astro.build/) - For Astro integration
