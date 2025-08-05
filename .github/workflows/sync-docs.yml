@@ -1,0 +1,32 @@
+name: Sync CSS to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'styles.min.css' ]
+  workflow_dispatch:
+
+jobs:
+  sync-css:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Copy styles.min.css to docs
+      run: |
+        cp styles.min.css docs/styles.min.css
+        
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add docs/styles.min.css
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "docs: sync styles.min.css to GitHub Pages"
+          git push
+        fi

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Style Guide</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
     <style>
         .style-section {
             margin-bottom: var(--spacing-2xl);
@@ -186,37 +186,63 @@
         <!-- Typography Section -->
         <section class="style-section">
             <h2>Typography</h2>
-            <p class="mb-lg">System font stack for optimal readability across platforms.</p>
+            <p class="mb-lg">System font stack for optimal readability across platforms with comprehensive heading hierarchy.</p>
             
+            <h3 class="mb-md">Heading Examples</h3>
             <div class="font-example">
-                <div class="text-3xl font-bold">Heading 1 - 48px Bold</div>
-                <div class="text-sm text-muted">font-size: 3rem; font-weight: 700;</div>
+                <h1>Heading 1 - Main Page Title</h1>
+                <div class="text-sm text-muted">48px Bold • Used for primary page titles</div>
             </div>
             
             <div class="font-example">
-                <div class="text-2xl font-bold">Heading 2 - 32px Bold</div>
-                <div class="text-sm text-muted">font-size: 2rem; font-weight: 700;</div>
+                <h2>Heading 2 - Section Title</h2>
+                <div class="text-sm text-muted">32px Bold • Used for major sections</div>
             </div>
             
             <div class="font-example">
-                <div class="text-xl font-semibold">Heading 3 - 24px Semibold</div>
-                <div class="text-sm text-muted">font-size: 1.5rem; font-weight: 600;</div>
+                <h3>Heading 3 - Subsection Title</h3>
+                <div class="text-sm text-muted">24px Semibold • Used for subsections</div>
             </div>
             
             <div class="font-example">
-                <div class="text-base">Body Text - 16px Regular</div>
-                <div class="text-sm text-muted">font-size: 1rem; font-weight: 400;</div>
+                <h4>Heading 4 - Content Group</h4>
+                <div class="text-sm text-muted">18px Bold • Used for content groupings</div>
             </div>
             
             <div class="font-example">
-                <div class="text-sm text-secondary">Small Text - 14px Secondary</div>
-                <div class="text-sm text-muted">font-size: 0.875rem; color: #666666;</div>
+                <h5>Heading 5 - Minor Heading</h5>
+                <div class="text-sm text-muted">16px Bold • Used for minor headings</div>
+            </div>
+            
+            <div class="font-example">
+                <h6>Heading 6 - Small Heading</h6>
+                <div class="text-sm text-muted">14px Bold • Used for small headings</div>
+            </div>
+
+            <h3 class="mb-md mt-lg">Text and Links</h3>
+            <div class="font-example">
+                <p>This is regular body text with <a href="#">a standard link</a> that changes color on hover. Links are styled with the primary color and include smooth transitions.</p>
+                <p>You can also have <strong>bold text</strong> and <em>italic text</em> within paragraphs. Here are more <a href="https://example.com">external links</a> and <a href="#section">internal links</a>.</p>
+                <div class="text-sm text-muted">16px Regular • Primary text with interactive links</div>
+            </div>
+            
+            <div class="font-example">
+                <div class="text-sm text-secondary">Small secondary text with <a href="#">smaller links</a> for captions and meta information.</div>
+                <div class="text-sm text-muted">14px Secondary • Used for captions and metadata</div>
             </div>
 
             <div class="code-block">
 /* Font Stack */
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-             Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;</div>
+             Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+/* Heading Usage */
+h1 { font-size: 3rem; }      /* 48px - Page titles */
+h2 { font-size: 2rem; }      /* 32px - Section titles */
+h3 { font-size: 1.5rem; }    /* 24px - Subsections */
+h4 { font-size: 1.125rem; }  /* 18px - Content groups */
+h5 { font-size: 1rem; }      /* 16px - Minor headings */
+h6 { font-size: 0.875rem; }  /* 14px - Small headings */</div>
         </section>
 
         <!-- Spacing Section -->
