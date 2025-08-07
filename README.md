@@ -22,9 +22,32 @@ This style guide creates visual harmony through consistent color relationships:
 
 ## 🚀 Quick Start
 
-### One-Command Installation
+### npm Package Installation (Recommended)
 
-The easiest way to add the Nord theme to any project:
+The modern way to add the Nord theme to any project:
+
+```bash
+npm install @cglass/personal-styles
+```
+
+Then import in your project:
+
+```javascript
+// Import the full CSS framework
+import '@cglass/personal-styles/styles.css';
+
+// Or import the minified version
+import '@cglass/personal-styles/styles.min.css';
+```
+
+```html
+<!-- Or link directly in HTML -->
+<link rel="stylesheet" href="node_modules/@cglass/personal-styles/styles.css">
+```
+
+### One-Command Installation (Legacy)
+
+The shell script installation is still available:
 
 ```bash
 curl -fsSL https://styles.chrisglass.dev/install.sh | sh
@@ -40,6 +63,19 @@ This will:
 
 ### For Astro Projects
 
+**Using npm (Recommended):**
+```bash
+npm install @cglass/personal-styles
+```
+
+```astro
+---
+// src/layouts/Layout.astro
+import '@cglass/personal-styles/styles.css';
+---
+```
+
+**Manual Installation:**
 1. Copy `styles.css` to your `public/` directory
 2. Import in your layout component with theme support:
 
@@ -80,6 +116,17 @@ This will:
 
 ### For GitHub Pages
 
+**Using npm (Recommended):**
+```bash
+npm install @cglass/personal-styles
+```
+
+For Jekyll sites, create `_includes/styles.html`:
+```html
+<link rel="stylesheet" href="{{ '/node_modules/@cglass/personal-styles/styles.css' | relative_url }}">
+```
+
+**Manual Installation:**
 1. Copy `styles.css` to your `assets/css/` directory
 2. Add to your `_layouts/default.html`:
 
@@ -354,7 +401,21 @@ Both design systems have been harmoniously combined and reimplemented for use wi
 
 ## 🚀 Distribution
 
-This theme is distributed through GitHub Releases and can be installed with a single command:
+This theme is available through multiple distribution methods:
+
+### npm Package (Recommended)
+
+```bash
+npm install @cglass/personal-styles
+```
+
+The package includes:
+- **styles.css** - Full CSS framework with design tokens
+- **styles.min.css** - Minified version for production
+- Automatic version management with semantic versioning
+- Easy integration with build tools and bundlers
+
+### Shell Script Installation
 
 ```bash
 curl -fsSL https://styles.chrisglass.dev/install.sh | sh

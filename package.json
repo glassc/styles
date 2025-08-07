@@ -1,10 +1,9 @@
 {
-  "name": "personal-styles",
+  "name": "@cglass/personal-styles",
   "version": "1.0.0",
   "description": "Personal style guide with Nord color palette and Ghost Journal-inspired design patterns",
-  "private": true,
   "scripts": {
-    "build": "mkdir -p dist && cp docs/index.html dist/ && cleancss styles.css -o dist/styles.min.css",
+    "build": "mkdir -p dist && cp docs/index.html dist/ && cp styles.css dist/ && cleancss styles.css -o dist/styles.min.css && cleancss styles.css -o styles.min.css",
     "build:dev": "npm run build && (chokidar 'styles.css' 'docs/**/*' -c 'npm run build' &) && http-server dist -p 8080 -o",
     "serve": "npm run build && http-server dist -p 8080 -o",
     "docs:publish": "npm run build && gh-pages --dist dist --cname styles.chrisglass.dev",
@@ -18,5 +17,17 @@
   },
   "keywords": ["css", "styles", "nord", "design-system"],
   "author": "Chris Glass",
-  "license": "MIT"
+  "license": "MIT",
+  "main": "styles.css",
+  "files": [
+    "styles.css",
+    "styles.min.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glassc/styles.git"
+  },
+  "publishConfig": {
+    "@cglass:registry": "https://npm.pkg.github.com"
+  }
 }
