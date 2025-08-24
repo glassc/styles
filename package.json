@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Personal style guide with Nord color palette and Ghost Journal-inspired design patterns",
   "scripts": {
-    "build": "mkdir -p dist && cp docs/index.html dist/ && cp styles.css dist/ && cleancss styles.css -o dist/styles.min.css && cleancss styles.css -o styles.min.css",
+    "build": "mkdir -p dist && cp docs/index.html dist/ && cp styles.css dist/ && cleancss styles.css -o dist/styles.min.css",
     "build:dev": "npm run build && (chokidar 'styles.css' 'docs/**/*' -c 'npm run build' &) && http-server dist -p 8080 -o",
-    "serve": "npm run build && http-server dist -p 8080 -o",
     "docs:publish": "npm run build && gh-pages --dist dist --cname styles.chrisglass.dev",
-    "docs:publish:dry": "npm run build && gh-pages --dist dist --cname styles.chrisglass.dev --no-push"
+    "docs:publish:dry": "npm run build && rm -rf node_modules/.cache/gh-pages && gh-pages --dist dist --cname styles.chrisglass.dev --no-push"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1",
@@ -15,13 +14,18 @@
     "http-server": "^14.1.1",
     "chokidar-cli": "^3.0.0"
   },
-  "keywords": ["css", "styles", "nord", "design-system"],
+  "keywords": [
+    "css",
+    "styles",
+    "nord",
+    "design-system"
+  ],
   "author": "Chris Glass",
   "license": "MIT",
   "main": "styles.css",
   "files": [
     "styles.css",
-    "styles.min.css"
+    "dist/styles.min.css"
   ],
   "repository": {
     "type": "git",
