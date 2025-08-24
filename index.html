@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Style Guide</title>
+    <link rel="stylesheet" href="styles.min.css">
+    <style>
+        .style-section {
+            margin-bottom: var(--spacing-2xl);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition-theme);
+        }
+        
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .color-info {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        .font-example {
+            margin-bottom: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            border-left: 4px solid var(--color-primary);
+            background-color: var(--color-border-light);
+        }
+        
+        .code-block {
+            background-color: var(--color-border-light);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-sm);
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: var(--font-size-sm);
+            overflow-x: auto;
+            margin: var(--spacing-sm) 0;
+            transition: var(--transition-theme);
+        }
+        
+        .spacing-demo {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius-sm);
+            font-size: var(--font-size-sm);
+        }
+        
+        .attribution {
+            background-color: var(--color-border-light);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-lg);
+            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="flex justify-between items-center mt-xl mb-xl">
+            <div class="text-center flex-1">
+                <h1>Personal Style Guide</h1>
+                <p class="text-lg text-secondary">A clean, modern design system with light & dark modes</p>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.75 12.79A9 9 0 1111.21 2.25 7 7 0 0021.75 12.79z"/>
+                </svg>
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+            </button>
+        </header>
+
+        <div class="attribution">
+            <h3>Attribution</h3>
+            <p>This style guide uses the <a href="https://www.nordtheme.com/" target="_blank">Nord color palette</a> for both light and dark themes, with layout and typography patterns inspired by Ghost's <a href="https://ghost.org/themes/journal/" target="_blank">Journal theme</a>. Design elements have been adapted for use with Astro and GitHub Pages.</p>
+            <p><strong>Colors:</strong> <a href="https://www.nordtheme.com/" target="_blank">Nord color palette</a><br>
+            <strong>Design patterns:</strong> <a href="https://journal.ghost.io" target="_blank">Ghost Journal theme</a></p>
+        </div>
+
+        <!-- Colors Section -->
+        <section class="style-section">
+            <h2>Color Palette</h2>
+            <p class="mb-lg">Harmonious Nord color palette for both light and dark themes with smooth transitions.</p>
+            
+            <h3 class="mb-md">Current Theme Colors</h3>
+            <div class="grid grid-cols-4 gap-md mb-lg">
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: var(--color-primary);"></div>
+                    <div class="font-medium">Primary</div>
+                    <div class="color-info">Dynamic</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: var(--color-text-primary);"></div>
+                    <div class="font-medium">Text Primary</div>
+                    <div class="color-info">Dynamic</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: var(--color-text-secondary);"></div>
+                    <div class="font-medium">Text Secondary</div>
+                    <div class="color-info">Dynamic</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: var(--color-border);"></div>
+                    <div class="font-medium">Border</div>
+                    <div class="color-info">Dynamic</div>
+                </div>
+            </div>
+
+            <h3 class="mb-md">Light Mode (Nord Snow Storm)</h3>
+            <div class="grid grid-cols-4 gap-md mb-lg">
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #5e81ac;"></div>
+                    <div class="font-medium">Primary</div>
+                    <div class="color-info">#5e81ac</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #2e3440;"></div>
+                    <div class="font-medium">Text Primary</div>
+                    <div class="color-info">#2e3440</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #434c5e;"></div>
+                    <div class="font-medium">Text Secondary</div>
+                    <div class="color-info">#434c5e</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #d8dee9;"></div>
+                    <div class="font-medium">Border</div>
+                    <div class="color-info">#d8dee9</div>
+                </div>
+            </div>
+
+            <h3 class="mb-md">Dark Mode (Nord Polar Night)</h3>
+            <div class="grid grid-cols-4 gap-md mb-lg">
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #88c0d0;"></div>
+                    <div class="font-medium">Primary</div>
+                    <div class="color-info">#88c0d0</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #e5e9f0;"></div>
+                    <div class="font-medium">Text Primary</div>
+                    <div class="color-info">#e5e9f0</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #d8dee9;"></div>
+                    <div class="font-medium">Text Secondary</div>
+                    <div class="color-info">#d8dee9</div>
+                </div>
+                <div class="text-center">
+                    <div class="color-swatch" style="background-color: #434c5e;"></div>
+                    <div class="font-medium">Border</div>
+                    <div class="color-info">#434c5e</div>
+                </div>
+            </div>
+
+            <div class="code-block">
+/* Light Mode (Nord Snow Storm) */
+:root {
+  --color-primary: #5e81ac;        /* Nord Frost */
+  --color-background: #eceff4;     /* Nord Snow Storm */
+  --color-text-primary: #2e3440;   /* Nord Polar Night */
+}
+
+/* Dark Mode (Nord Polar Night) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #88c0d0;       /* Nord Frost */
+    --color-background: #2e3440;    /* Nord Polar Night */
+    --color-text-primary: #e5e9f0;  /* Nord Snow Storm */
+  }
+}</div>
+        </section>
+
+        <!-- Typography Section -->
+        <section class="style-section">
+            <h2>Typography</h2>
+            <p class="mb-lg">System font stack for optimal readability across platforms with comprehensive heading hierarchy.</p>
+            
+            <h3 class="mb-md">Heading Examples</h3>
+            <div class="font-example">
+                <h1>Heading 1 - Main Page Title</h1>
+                <div class="text-sm text-muted">48px Bold • Used for primary page titles</div>
+            </div>
+            
+            <div class="font-example">
+                <h2>Heading 2 - Section Title</h2>
+                <div class="text-sm text-muted">32px Bold • Used for major sections</div>
+            </div>
+            
+            <div class="font-example">
+                <h3>Heading 3 - Subsection Title</h3>
+                <div class="text-sm text-muted">24px Semibold • Used for subsections</div>
+            </div>
+            
+            <div class="font-example">
+                <h4>Heading 4 - Content Group</h4>
+                <div class="text-sm text-muted">18px Bold • Used for content groupings</div>
+            </div>
+            
+            <div class="font-example">
+                <h5>Heading 5 - Minor Heading</h5>
+                <div class="text-sm text-muted">16px Bold • Used for minor headings</div>
+            </div>
+            
+            <div class="font-example">
+                <h6>Heading 6 - Small Heading</h6>
+                <div class="text-sm text-muted">14px Bold • Used for small headings</div>
+            </div>
+
+            <h3 class="mb-md mt-lg">Text and Links</h3>
+            <div class="font-example">
+                <p>This is regular body text with <a href="#">a standard link</a> that changes color on hover. Links are styled with the primary color and include smooth transitions.</p>
+                <p>You can also have <strong>bold text</strong> and <em>italic text</em> within paragraphs. Here are more <a href="https://example.com">external links</a> and <a href="#section">internal links</a>.</p>
+                <div class="text-sm text-muted">16px Regular • Primary text with interactive links</div>
+            </div>
+            
+            <div class="font-example">
+                <div class="text-sm text-secondary">Small secondary text with <a href="#">smaller links</a> for captions and meta information.</div>
+                <div class="text-sm text-muted">14px Secondary • Used for captions and metadata</div>
+            </div>
+
+            <div class="code-block">
+/* Font Stack */
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+             Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+/* Heading Usage */
+h1 { font-size: 3rem; }      /* 48px - Page titles */
+h2 { font-size: 2rem; }      /* 32px - Section titles */
+h3 { font-size: 1.5rem; }    /* 24px - Subsections */
+h4 { font-size: 1.125rem; }  /* 18px - Content groups */
+h5 { font-size: 1rem; }      /* 16px - Minor headings */
+h6 { font-size: 0.875rem; }  /* 14px - Small headings */</div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section class="style-section">
+            <h2>Spacing System</h2>
+            <p class="mb-lg">Consistent 8px-based spacing scale for layouts and components.</p>
+            
+            <div class="grid grid-cols-2 gap-lg">
+                <div>
+                    <div class="spacing-demo p-xs mb-xs">XS - 8px</div>
+                    <div class="spacing-demo p-sm mb-xs">SM - 16px</div>
+                    <div class="spacing-demo p-md mb-xs">MD - 24px</div>
+                    <div class="spacing-demo p-lg mb-xs">LG - 32px</div>
+                </div>
+                <div>
+                    <div class="spacing-demo p-xl mb-xs">XL - 48px</div>
+                    <div class="spacing-demo p-2xl mb-xs">2XL - 64px</div>
+                </div>
+            </div>
+
+            <div class="code-block">
+/* Spacing Variables */
+--spacing-xs: 0.5rem;   /* 8px */
+--spacing-sm: 1rem;     /* 16px */
+--spacing-md: 1.5rem;   /* 24px */
+--spacing-lg: 2rem;     /* 32px */
+--spacing-xl: 3rem;     /* 48px */
+--spacing-2xl: 4rem;    /* 64px */</div>
+        </section>
+
+        <!-- Buttons Section -->
+        <section class="style-section">
+            <h2>Buttons</h2>
+            <p class="mb-lg">Clean button styles with hover effects and focus states.</p>
+            
+            <div class="flex gap-md mb-md">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-ghost">Ghost Button</button>
+            </div>
+            
+            <div class="flex gap-md mb-md">
+                <button class="btn btn-primary btn-sm">Small</button>
+                <button class="btn btn-primary">Default</button>
+                <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+
+            <div class="code-block">
+&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary Button&lt;/button&gt;
+&lt;button class="btn btn-ghost"&gt;Ghost Button&lt;/button&gt;</div>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="style-section">
+            <h2>Cards</h2>
+            <p class="mb-lg">Content cards with subtle shadows and hover effects.</p>
+            
+            <div class="grid grid-cols-3 gap-md">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Article Title</div>
+                        <div class="card-meta">Jan 15, 2024 • 5 min read</div>
+                    </div>
+                    <div class="card-content">
+                        <p>This is a preview of the article content. Cards provide a clean way to organize and display content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-ghost btn-sm">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Project Update</div>
+                        <div class="card-meta">Development</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Regular updates on project progress and upcoming features.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Getting Started</div>
+                        <div class="card-meta">Tutorial</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Step-by-step guide to implementing this style guide in your projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block mt-md">
+&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+    &lt;div class="card-meta"&gt;Metadata&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content"&gt;
+    &lt;p&gt;Card content goes here...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+        </section>
+
+        <!-- Navigation Section -->
+        <section class="style-section">
+            <h2>Navigation</h2>
+            <p class="mb-lg">Clean navigation patterns for headers and menus.</p>
+            
+            <nav class="nav border rounded p-md">
+                <a href="#" class="nav-brand">Brand</a>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active">Home</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="#" class="nav-link">Projects</a></li>
+                    <li><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="code-block mt-md">
+&lt;nav class="nav"&gt;
+  &lt;a href="#" class="nav-brand"&gt;Brand&lt;/a&gt;
+  &lt;ul class="nav-links"&gt;
+    &lt;li&gt;&lt;a href="#" class="nav-link active"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="nav-link"&gt;About&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</div>
+        </section>
+
+        <!-- Grid System Section -->
+        <section class="style-section">
+            <h2>Grid System</h2>
+            <p class="mb-lg">Flexible CSS Grid system for responsive layouts.</p>
+            
+            <div class="grid grid-cols-4 gap-md mb-md">
+                <div class="p-md border rounded text-center">Col 1</div>
+                <div class="p-md border rounded text-center">Col 2</div>
+                <div class="p-md border rounded text-center">Col 3</div>
+                <div class="p-md border rounded text-center">Col 4</div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-md mb-md">
+                <div class="p-md border rounded text-center">Col 1</div>
+                <div class="p-md border rounded text-center">Col 2</div>
+                <div class="p-md border rounded text-center">Col 3</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-md">
+                <div class="p-md border rounded text-center">Col 1</div>
+                <div class="p-md border rounded text-center">Col 2</div>
+            </div>
+
+            <div class="code-block">
+&lt;div class="grid grid-cols-3 gap-md"&gt;
+  &lt;div&gt;Column 1&lt;/div&gt;
+  &lt;div&gt;Column 2&lt;/div&gt;
+  &lt;div&gt;Column 3&lt;/div&gt;
+&lt;/div&gt;</div>
+        </section>
+
+        <!-- Usage Examples Section -->
+        <section class="style-section">
+            <h2>Usage Examples</h2>
+            <p class="mb-lg">Integration examples for Astro and GitHub Pages.</p>
+            
+            <h3 class="mb-md">Astro Integration</h3>
+            <div class="code-block">
+---
+// src/layouts/Layout.astro
+---
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="/styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="container"&gt;
+      &lt;slot /&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</div>
+
+            <h3 class="mb-md mt-lg">GitHub Pages Integration</h3>
+            <div class="code-block">
+&lt;!-- Add to your GitHub Pages _layouts/default.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="container"&gt;
+      {{ content }}
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</div>
+        </section>
+
+        <footer class="text-center mt-2xl mb-xl border-t pt-xl">
+            <p class="text-secondary">Personal Style Guide • <a href="https://www.nordtheme.com/" target="_blank">Nord Colors</a> + <a href="https://ghost.org/themes/journal/" target="_blank">Journal Design</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Get saved theme from localStorage or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Set initial theme
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        } else if (systemPrefersDark) {
+            html.setAttribute('data-theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+        }
+        
+        // Toggle theme function
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        // Add click event listener
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Only auto-switch if user hasn't manually set a preference
+            if (!localStorage.getItem('theme')) {
+                html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+</body>
+</html>
