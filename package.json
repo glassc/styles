@@ -1,5 +1,5 @@
 {
-  "name": "@cglass/personal-styles",
+  "name": "@glassc/personal-styles",
   "version": "1.0.0",
   "description": "Personal style guide with Nord color palette and Ghost Journal-inspired design patterns",
   "scripts": {
@@ -32,6 +32,6 @@
     "url": "git+https://github.com/glassc/styles.git"
   },
   "publishConfig": {
-    "@cglass:registry": "https://npm.pkg.github.com"
+    "@glassc:registry": "https://npm.pkg.github.com"
   }
 }
