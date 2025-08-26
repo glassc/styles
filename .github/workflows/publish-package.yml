@@ -26,8 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build package
-        run: npm run build
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-build-artifacts
+          path: dist/
 
       - name: Set package version from tag
         run: |
