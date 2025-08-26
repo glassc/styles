@@ -1,9 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
-    paths: ['styles.css', 'docs/**/*']
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:

@@ -2,8 +2,8 @@ name: Create Release with CSS Files
 
 on:
   push:
-    branches: [main]
-    paths: ['styles.css']
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -29,30 +29,13 @@ jobs:
       - name: Minify CSS
         run: cleancss styles.css -o styles.min.css
 
-      - name: Get next version
+      - name: Get version from tag
         id: version
         run: |
-          # Get the latest tag, or start with v1.0.0 if no tags exist
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "Latest tag: $LATEST_TAG"
-
-          # Extract version numbers
-          if [[ $LATEST_TAG =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
-            MAJOR=${BASH_REMATCH[1]}
-            MINOR=${BASH_REMATCH[2]}
-            PATCH=${BASH_REMATCH[3]}
-          else
-            MAJOR=1
-            MINOR=0
-            PATCH=0
-          fi
-
-          # Increment patch version
-          PATCH=$((PATCH + 1))
-          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
-
-          echo "Next version: $NEW_VERSION"
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          # Extract version from the git tag
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "Version from tag: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create Release
         id: create_release
