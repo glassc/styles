@@ -1,6 +1,6 @@
 {
   "name": "@glassc/styles",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Personal style guide with Nord color palette and Ghost Journal-inspired design patterns",
   "scripts": {
     "build": "mkdir -p dist && cp docs/index.html dist/ && cp styles.css dist/ && cleancss styles.css -o dist/styles.min.css",
