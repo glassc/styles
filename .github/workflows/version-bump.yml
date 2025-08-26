@@ -3,13 +3,25 @@ name: Version Bump
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - major
+          - minor
+          - patch
 
 jobs:
   bump-version:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,24 +43,68 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
+      - name: Determine version bump type
+        id: version_type
+        run: |
+          VERSION_TYPE="${{ github.event.inputs.version_type }}"
+          
+          if [[ "$VERSION_TYPE" == "auto" ]] || [[ -z "$VERSION_TYPE" ]]; then
+            echo "Auto-detecting version bump type from commits..."
+            
+            # Get the latest tag, or use initial commit if no tags exist
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
+            echo "Analyzing commits since: $LATEST_TAG"
+            
+            # Get commits since last tag
+            COMMITS=$(git log --pretty=format:"%s" ${LATEST_TAG}..HEAD)
+            echo "Commits to analyze:"
+            echo "$COMMITS"
+            
+            # Check for breaking changes (major bump)
+            if echo "$COMMITS" | grep -qE "(BREAKING CHANGE|!:)"; then
+              VERSION_TYPE="major"
+              echo "🚨 Breaking changes detected"
+            # Check for new features (minor bump)
+            elif echo "$COMMITS" | grep -qE "^feat(\(.*\))?:"; then
+              VERSION_TYPE="minor"
+              echo "✨ New features detected"
+            # Check for fixes or other changes (patch bump)
+            elif echo "$COMMITS" | grep -qE "^(fix|docs|style|refactor|perf|test|build|ci|chore)(\(.*\))?:"; then
+              VERSION_TYPE="patch"
+              echo "🔧 Fixes or other changes detected"
+            else
+              # Default to patch if no conventional commits found
+              VERSION_TYPE="patch"
+              echo "⚠️ No conventional commits found, defaulting to patch"
+            fi
+          fi
+          
+          echo "Version bump type: $VERSION_TYPE"
+          echo "type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+
       - name: Bump version
         run: |
-          # Bump patch version in package.json
-          npm version patch --no-git-tag-version
-
+          BUMP_TYPE="${{ steps.version_type.outputs.type }}"
+          echo "Bumping $BUMP_TYPE version..."
+          
+          # Bump version in package.json
+          npm version $BUMP_TYPE --no-git-tag-version
+          
           # Get the new version
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo "New version: $NEW_VERSION"
-
+          
           # Commit the version bump
           git add package.json
           git commit -m "chore: bump version to $NEW_VERSION"
-
+          
           # Create tag
           git tag "v$NEW_VERSION"
-
+          
           # Push changes and tag
           git push origin main
           git push origin "v$NEW_VERSION"
+          
+          echo "✅ Successfully bumped to version $NEW_VERSION"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
