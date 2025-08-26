@@ -1,4 +1,4 @@
-name: Create Release with CSS Files
+name: Release and Publish Package
 
 on:
   push:
@@ -7,10 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  release-and-publish:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
 
     steps:
       - name: Checkout code
@@ -23,6 +24,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@glassc'
 
       - name: Install dependencies
         run: npm ci
@@ -61,12 +64,6 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-build-artifacts
-          path: dist/
-
       - name: Upload Original CSS
         uses: actions/upload-release-asset@v1
         env:
@@ -86,3 +83,8 @@ jobs:
           asset_path: ./dist/styles.min.css
           asset_name: styles.min.css
           asset_content_type: text/css
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
