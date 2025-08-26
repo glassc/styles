@@ -1,5 +1,5 @@
 {
-  "name": "@glassc/personal-styles",
+  "name": "@glassc/styles",
   "version": "1.0.0",
   "description": "Personal style guide with Nord color palette and Ghost Journal-inspired design patterns",
   "scripts": {
